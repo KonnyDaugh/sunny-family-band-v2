@@ -4,6 +4,8 @@ export type Program = {
   description: string;
   lineup: string;
   featured: boolean;
+  image: string;
+  imageAlt: string;
 };
 
 export const programs: Program[] = [
@@ -15,6 +17,8 @@ export const programs: Program[] = [
     lineup:
       "4 musicians · Vocals, keys, guitar, saxophone & trumpet",
     featured: true,
+    image: "/images/programs/full-band.jpg",
+imageAlt: "Sunny Family Band performing together",
   },
   {
     id: "solo-saxophone",
@@ -23,6 +27,8 @@ export const programs: Program[] = [
       "Laid-back lounge or upbeat dance favourites, with saxophone taking the lead.",
     lineup: "Solo saxophone · With backing tracks",
     featured: false,
+    image: "/images/programs/solo-saxophone.jpg",
+    imageAlt: "Saxophone solo performance",
   },
   {
     id: "lounge-vocals",
@@ -31,5 +37,7 @@ export const programs: Program[] = [
       "Warm vocals and relaxed favourites to set the mood for your evening.",
     lineup: "Solo vocals · With backing tracks",
     featured: false,
+    image: "/images/programs/lounge-vocals.jpg",
+    imageAlt: "Natalia singing with a microphone",
   },
 ];
