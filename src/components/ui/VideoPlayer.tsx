@@ -19,7 +19,7 @@ export default function VideoPlayer({
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative aspect-video min-h-[200px] overflow-hidden rounded-xl bg-foreground">
+    <div className="relative aspect-video min-h-200px overflow-hidden rounded-xl bg-foreground">
       {isLoaded ? (
         <iframe
           src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&playsinline=1`}

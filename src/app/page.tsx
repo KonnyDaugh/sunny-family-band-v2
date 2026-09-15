@@ -4,6 +4,7 @@ import NextPerformance from "@/components/sections/NextPerformance";
 import { events } from "@/data/events";
 import Music from "@/components/sections/Music";
 import Programs from "@/components/sections/Programs";
+import OurFamily from "@/components/sections/OurFamily";
 
 export default function Home() {
   const nextEvent = events[0];
@@ -19,6 +20,7 @@ export default function Home() {
         )}
         <Music />
         <Programs />
+        <OurFamily />
       </main>
     </>
   );

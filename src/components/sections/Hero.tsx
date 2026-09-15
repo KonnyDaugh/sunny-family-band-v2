@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
           <div className="relative aspect-4/3 overflow-hidden rounded-xl lg:aspect-square">
             <Image
-              src="/images/band-hero.jpg"
+              src="/images/band-hero.webp"
               alt="Sunny Family Band performing with keyboard, saxophone, trumpet and guitar"
               fill
               sizes="(min-width: 1152px) 603px, (min-width: 1024px) calc((100vw - 104px) * 0.575), calc(100vw - 48px)"
