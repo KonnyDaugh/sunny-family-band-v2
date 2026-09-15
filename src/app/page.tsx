@@ -5,6 +5,8 @@ import { events } from "@/data/events";
 import Music from "@/components/sections/Music";
 import Programs from "@/components/sections/Programs";
 import OurFamily from "@/components/sections/OurFamily";
+import Booking from "@/components/sections/Booking";
+import BookingProvider from "@/components/booking/BookingProvider";
 
 export default function Home() {
   const nextEvent = events[0];
@@ -19,8 +21,11 @@ export default function Home() {
           <NextPerformance event={nextEvent} />
         )}
         <Music />
-        <Programs />
-        <OurFamily />
+        <BookingProvider>
+          <Programs />
+          <OurFamily />
+          <Booking />
+        </BookingProvider>
       </main>
     </>
   );

@@ -1,8 +1,13 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import { programs } from "@/data/programs";
 import Image from "next/image";
+import { useBooking } from "@/components/booking/BookingProvider";
 
 export default function Programs() {
+  const { selectedProgram, selectProgram } = useBooking();
+
   return (
     <section
       id="programs"
@@ -31,7 +36,7 @@ export default function Programs() {
             <li
             key={program.id}
             className={`flex flex-col overflow-hidden rounded-2xl border ${
-                program.featured
+                selectedProgram === program.id
                 ? "border-sunshine bg-sunshine/20"
                 : "border-border bg-background"
             }`}
@@ -63,8 +68,9 @@ export default function Programs() {
                     <a
                         href="#booking"
                         aria-label={`Enquire about ${program.title}`}
+                        onClick={() => selectProgram(program.id)}
                         className={`inline-flex w-full items-center justify-center rounded-lg border px-4 py-3 text-center text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${
-                        program.featured
+                        selectedProgram === program.id
                             ? "border-primary bg-primary text-white hover:border-primary-hover hover:bg-primary-hover"
                             : "border-primary text-primary hover:bg-primary hover:text-white"
                         }`}
