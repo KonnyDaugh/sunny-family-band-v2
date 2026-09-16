@@ -1,7 +1,64 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import BookingFields from "@/components/ui/BookingFields";
+import { useRef, useState, type SubmitEvent } from "react";
+import { useBooking } from "@/components/booking/BookingProvider";
 
 export default function Booking() {
+  const { selectProgram } = useBooking();
+
+    const sendingRef = useRef(false);
+    const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+    >("idle");
+    const [message, setMessage] = useState("");
+
+    async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (sendingRef.current) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    sendingRef.current = true;
+    setStatus("sending");
+    setMessage("Sending your enquiry…");
+
+    try {
+        const response = await fetch("/api/booking.php", {
+        method: "POST",
+        body: formData,
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || result.ok !== true) {
+        setStatus("error");
+        setMessage(
+            typeof result.message === "string"
+            ? result.message
+            : "We couldn’t send your enquiry. Please try again."
+        );
+        return;
+        }
+
+        form.reset();
+        selectProgram("");
+
+        setStatus("success");
+        setMessage("Thank you! Your enquiry has been sent.");
+    } catch {
+        setStatus("error");
+        setMessage(
+        "We couldn’t confirm delivery. Please try again later or contact us by email."
+        );
+    } finally {
+        sendingRef.current = false;
+    }
+    }
+
   return (
     <section
       id="booking"
@@ -34,25 +91,36 @@ export default function Booking() {
           </div>
 
           <form
+            onSubmit={handleSubmit}
             aria-labelledby="booking-heading"
+            aria-busy={status === "sending"}
             className="min-w-0 rounded-2xl border border-border p-6 sm:p-8"
           >
             <p className="mb-6 text-sm">
               Fields marked with * are required.
             </p>
 
-            <BookingFields />
+            <fieldset disabled={status === "sending"} className="min-w-0">
+                <BookingFields />
+            </fieldset>
 
             <button
-              type="button"
-              disabled
-              className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                type="submit"
+                disabled={status === "sending"}
+                className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-hover disabled:cursor-wait disabled:opacity-50 sm:w-auto"
             >
-              Send enquiry
+                {status === "sending" ? "Sending…" : "Send enquiry"}
             </button>
 
-            <p className="mt-3 text-sm">
-              Sending is not available yet.
+            <p
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            className={`mt-3 text-sm ${
+                status === "error" ? "text-red-700" : "text-foreground"
+            }`}
+            >
+                {message}
             </p>
           </form>
         </div>

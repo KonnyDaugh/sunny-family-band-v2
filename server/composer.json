@@ -1,0 +1,13 @@
+{
+  "name": "sunny-family-band/booking",
+  "type": "project",
+  "require": {
+    "php": "^8.3",
+    "phpmailer/phpmailer": "^7.1"
+  },
+  "config": {
+    "platform": {
+      "php": "8.3.16"
+    }
+  }
+}

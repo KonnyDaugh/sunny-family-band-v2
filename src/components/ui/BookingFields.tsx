@@ -11,6 +11,19 @@ export default function BookingFields() {
 
   return (
     <div className="grid gap-5 sm:grid-cols-2">
+        <div hidden aria-hidden="true">
+            <label htmlFor="booking-website">
+                Leave this field empty
+            </label>
+
+            <input
+                id="booking-website"
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+            />
+        </div>
       <div>
         <label htmlFor="booking-name" className="text-sm font-semibold">
           Your name *
