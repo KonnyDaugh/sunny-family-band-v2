@@ -9,6 +9,7 @@ import Booking from "@/components/sections/Booking";
 import BookingProvider from "@/components/booking/BookingProvider";
 import Contacts from "@/components/sections/Contacts";
 import Footer from "@/components/layout/Footer";
+import Gallery from "@/components/sections/Gallery";
 
 export default function Home() {
   const nextEvent = events[0];
@@ -26,6 +27,7 @@ export default function Home() {
         <BookingProvider>
           <Programs />
           <OurFamily />
+          <Gallery />
           <Booking />
         </BookingProvider>
         <Contacts />
