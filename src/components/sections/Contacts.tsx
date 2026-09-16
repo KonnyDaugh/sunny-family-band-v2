@@ -20,7 +20,7 @@ export default function Contacts() {
     <section
       id="contacts"
       aria-labelledby="contacts-heading"
-      className="py-12 lg:py-16"
+      className="pt-8 pb-12 lg:pt-10 lg:pb-16"
     >
       <Container>
         <div className="grid gap-8 border-t border-border pt-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12 lg:pt-16">

@@ -8,6 +8,7 @@ import OurFamily from "@/components/sections/OurFamily";
 import Booking from "@/components/sections/Booking";
 import BookingProvider from "@/components/booking/BookingProvider";
 import Contacts from "@/components/sections/Contacts";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   const nextEvent = events[0];
@@ -29,6 +30,7 @@ export default function Home() {
         </BookingProvider>
         <Contacts />
       </main>
+      <Footer />
     </>
   );
 }

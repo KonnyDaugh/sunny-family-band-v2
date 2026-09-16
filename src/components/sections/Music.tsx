@@ -4,8 +4,8 @@ import { useRef, useState } from "react";
 
 import Container from "@/components/ui/Container";
 import { tracks, type MusicMood } from "@/data/tracks";
-import VideoPlayer from "@/components/ui/VideoPlayer";
 import { featuredVideo } from "@/data/video";
+import Image from "next/image";
 
 type MoodFilter = MusicMood | "all";
 
@@ -75,14 +75,12 @@ const visibleTracks =
         </div>
 
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-2">
-            <VideoPlayer
-                youtubeId={featuredVideo.youtubeId}
-                title={featuredVideo.title}
-                poster={featuredVideo.poster}
-                onActivate={() => {
-                activeAudioRef.current?.pause();
-                activeAudioRef.current = null;
-                }}
+            <Image
+                src={featuredVideo.poster}
+                alt="Sunny Family Band"
+                width={1200}
+                height={675}
+                className="h-auto w-full object-cover"
             />
 
             <ul className="divide-y divide-border">
