@@ -7,6 +7,7 @@ import Programs from "@/components/sections/Programs";
 import OurFamily from "@/components/sections/OurFamily";
 import Booking from "@/components/sections/Booking";
 import BookingProvider from "@/components/booking/BookingProvider";
+import Contacts from "@/components/sections/Contacts";
 
 export default function Home() {
   const nextEvent = events[0];
@@ -26,6 +27,7 @@ export default function Home() {
           <OurFamily />
           <Booking />
         </BookingProvider>
+        <Contacts />
       </main>
     </>
   );
