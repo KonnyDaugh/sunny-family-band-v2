@@ -6,6 +6,7 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import VideoPlayer from "@/components/ui/VideoPlayer";
 import { featuredVideo } from "@/data/video";
+import { galleryPhotos } from "@/data/gallery";
 
 type GalleryMode = "photos" | "videos";
 
@@ -62,15 +63,20 @@ export default function Gallery() {
         <div className="mt-8">
           {mode === "photos" ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="overflow-hidden rounded-2xl">
-                <Image
-                  src={featuredVideo.poster}
-                  alt="Sunny Family Band performing"
-                  width={1200}
-                  height={800}
-                  className="h-full w-full object-cover"
-                />
-              </div>
+                {galleryPhotos.map((photo) => (
+                    <div
+                    key={photo.id}
+                    className="overflow-hidden rounded-2xl"
+                    >
+                    <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        width={1200}
+                        height={800}
+                        className="aspect-4/3 w-full object-cover"
+                    />
+                    </div>
+                ))}
             </div>
           ) : (
             <div className="max-w-3xl">
