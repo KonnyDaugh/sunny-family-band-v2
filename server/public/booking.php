@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+$privateDir = PHP_SAPI === 'cli-server'
+    ? dirname(__DIR__)
+    : dirname(__DIR__, 3) . '/sunny-band-private';
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
@@ -114,7 +118,7 @@ if (!array_key_exists($booking['program'], $programs)) {
 $booking['program'] = $programs[$booking['program']];
 
 try {
-    require_once dirname(__DIR__) . '/rate-limit.php';
+    require_once $privateDir . '/rate-limit.php';
 
     $retryAfter = reserveBookingAttempt(
         $_SERVER['REMOTE_ADDR'] ?? 'unknown'
@@ -138,7 +142,7 @@ if ($retryAfter > 0) {
 }
 
 try {
-    require_once dirname(__DIR__) . '/send-booking.php';
+    require_once $privateDir . '/send-booking.php';
 
     sendBookingEmail($booking);
 
